@@ -1,8 +1,8 @@
-#!/bin/bash
-#date 08.02.2022
-#update 
+#!/bin/sh
+#date (dd.mm.yyyy) 08.02.2022
+#update 12.11.2022
 #author Ivan Palmegiani
-#purpose Creates a folder named condaenvs followed by todays date and clones all conda environments in system to yml in that directory 
+#purpose Clones all conda environments in system to yml to a directory in home named condaenvs_[DateOfTheClone]
 
 
 TODAY=$(date "+%Y-%m-%d")
@@ -16,8 +16,8 @@ mkdir ~/condaenvs-$TODAY
 ENVS=$(conda env list | grep '^\w' | cut -d' ' -f1)
 for env in $ENVS; do
     conda activate $env
-    conda env export > ~/condaenvs-$TODAY/$env.yml
+    conda env export > $HOME/condaenvs-$TODAY/$env.yml
     echo "Exporting $env"
 done
 
-echo -e Backed up all Conda envs on ${TODAY} >> cron_reports.txt
+echo -e Backed up all Conda envs on ${TODAY} >> $HOME/cron_reports.txt
