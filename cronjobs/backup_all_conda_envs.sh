@@ -20,4 +20,6 @@ for env in $ENVS; do
     echo "Exporting $env"
 done
 
-echo -e Backed up all Conda envs on ${TODAY} >> $HOME/cron_reports.txt
+# Add line to cron report file
+NOW=$(date +"%Y-%m-%d %H:%M:%S")
+echo -e Backed up all Conda envs on ${NOW} >> $HOME/cron_reports.txt
